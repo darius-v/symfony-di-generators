@@ -5,6 +5,9 @@
 
     <arg name="colors" />
 
+    <!-- Show progress of the run -->
+    <arg value="s" />
+
     <!-- Code directory -->
     <file>src/</file>
 

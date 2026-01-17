@@ -1,6 +1,11 @@
 Todo:
-- Why rot13 converter needed if php has this function?
+- sniffer
+- stan
+- tests
 - retest readme
+
+Done
+- Why rot13 converter needed if php has this function? 
 
 To launch:
 
@@ -16,4 +21,14 @@ Run
 Bash:
 `docker compose exec php bash`
 
+Inside bash:
+
 `composer install`
+
+Sniffer
+
+`vendor/bin/phpcs src -s --colors`
+
+Autofix
+
+`vendor/bin/phpcbf`

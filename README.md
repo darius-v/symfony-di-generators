@@ -1,4 +1,5 @@
 Todo:
+- Why rot13 converter needed if php has this function?
 - retest readme
 
 To launch:

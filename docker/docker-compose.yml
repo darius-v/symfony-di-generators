@@ -1,22 +1,7 @@
 services:
-  app:            # Name of the service (container).
-                  # You’ll refer to it as "app" in commands.
-
-    build: .      # Build the Docker image using the Dockerfile
-                  # located in the current directory (.)
-
+  php:
+    image: my-php-app
+    working_dir: /app
     volumes:
-      - .:/app    # Mount the current host directory (.)
-                  # into /app inside the container.
-                  #
-                  # Left side  (.)   = directory on YOUR computer
-                  # Right side (/app)= directory INSIDE the container
-                  #
-                  # Effect:
-                  # - Your source code is shared with the container
-                  # - Changes on host are immediately visible inside container
-                  # - No need to rebuild image after every code change
-
-    command: php index.php
-                  # Default command executed when the container starts.
-                  # Here it runs your CLI entry point.
+      - ../:/app   # Mount your project folder into container
+    tty: true

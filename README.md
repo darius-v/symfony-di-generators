@@ -4,7 +4,6 @@ Todo:
 To launch:
 
 `cd docker`
-`docker compose run --rm app composer install`
 
 Build:
 
@@ -16,4 +15,4 @@ Run
 Bash:
 `docker compose exec php bash`
 
-
+`composer install`

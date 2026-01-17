@@ -20,6 +20,6 @@ class GeneratorCollection implements \IteratorAggregate
 
     public function getIterator(): \Traversable
     {
-        return new \ArrayIterator($this->generators );
+        return new \ArrayIterator($this->generators);
     }
 }

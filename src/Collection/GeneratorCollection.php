@@ -9,7 +9,7 @@ use App\Generator\GeneratorInterface;
 class GeneratorCollection implements \IteratorAggregate
 {
     /**
-     * @var GeneratorInterface[] 
+     * @var GeneratorInterface[]
      */
     private array $generators = [];
 

@@ -29,6 +29,10 @@ Sniffer
 
 `vendor/bin/phpcs`
 
-Autofix
+Autofix sniffer
 
 `vendor/bin/phpcbf`
+
+PHPStan
+
+`vendor/bin/phpstan analyse src`

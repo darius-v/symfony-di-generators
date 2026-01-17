@@ -27,7 +27,7 @@ Inside bash:
 
 Sniffer
 
-`vendor/bin/phpcs src -s --colors`
+`vendor/bin/phpcs`
 
 Autofix
 

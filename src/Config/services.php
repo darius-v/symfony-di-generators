@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 use App\Command\Generator;
 use App\Converter\RandomConverterPicker;
+use App\Converter\Rot13Converter;
+use App\Converter\StringPositionConverter;
 use App\Factory\GeneratorsCollectionFactory;
 use App\Services\Printer;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Argument\TaggedIteratorArgument;
 
 return static function (ContainerBuilder $container): void {
     $container->autowire(Printer::class)
@@ -18,6 +21,17 @@ return static function (ContainerBuilder $container): void {
     $container->autowire(Generator::class)
         ->setPublic(true);
 
+    // Autowire converters and tag them
+    $container->autowire(StringPositionConverter::class)
+        ->addTag('app.converter');
+
+    $container->autowire(Rot13Converter::class)
+        ->addTag('app.converter');
+
+    // Autowire RandomConverterPicker and inject all tagged converters
     $container->autowire(RandomConverterPicker::class)
-        ->setPublic(true);
+        ->setPublic(true)
+        ->setArguments([
+            new TaggedIteratorArgument('app.converter')
+        ]);
 };

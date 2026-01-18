@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Converter;
 
-class RandomConverterPicker
+readonly class RandomConverterPicker
 {
+    public function __construct(public iterable $converters)
+    {
+    }
+
     public function pick(): StringPositionConverter|Rot13Converter
     {
-        $converters = [
-            new StringPositionConverter(),
-            new Rot13Converter(),
-        ];
-
-        return $converters[array_rand($converters)]; // pick a random converter
+        $convertersArray = iterator_to_array($this->converters);
+        return $convertersArray[array_rand($convertersArray)];
     }
 }

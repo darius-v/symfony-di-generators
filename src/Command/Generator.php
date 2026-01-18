@@ -15,7 +15,8 @@ readonly class Generator
         private GeneratorsCollectionFactory $factory,
         private RandomConverterPicker $converterPicker,
         private OutputProcessor $outputProcessor,
-    ) {}
+    ) {
+    }
 
     public function generate(): void
     {

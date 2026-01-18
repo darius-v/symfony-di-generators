@@ -6,7 +6,6 @@ namespace App\Generator\Strategies;
 
 use App\Converter\ConverterInterface;
 use App\Services\Printer;
-use Traversable;
 
 class ArrayOutputStrategy implements OutputStrategyInterface
 {

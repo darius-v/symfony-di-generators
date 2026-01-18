@@ -40,3 +40,7 @@ PHPStan
 Tests
 
 `vendor/bin/phpunit --colors tests`
+
+All quality check:
+
+`./run_quality_check.sh`

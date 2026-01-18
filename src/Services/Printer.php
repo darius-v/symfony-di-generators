@@ -6,10 +6,12 @@ namespace App\Services;
 
 class Printer
 {
-    function print(string $original, string $converted): void
+    function print(string $original, array $convertedItems): void
     {
-        echo "Original: $original" . PHP_EOL;
-        echo "Converted: $converted" . PHP_EOL;
-        echo str_repeat('-', 20) . PHP_EOL;
+        foreach ($convertedItems as $convertedItem) {
+            echo "Original: $original" . PHP_EOL;
+            echo "Converted: $convertedItem" . PHP_EOL;
+            echo str_repeat('-', 20) . PHP_EOL;
+        }
     }
 }

@@ -7,6 +7,7 @@ namespace App\Command;
 use App\Converter\RandomConverterPicker;
 use App\Factory\GeneratorsCollectionFactory;
 use App\Generator\GeneratorInterface;
+use App\Generator\Strategies\OutputStrategyInterface;
 use App\Services\Printer;
 
 readonly class Generator
@@ -15,6 +16,7 @@ readonly class Generator
         private GeneratorsCollectionFactory $factory,
         private Printer $printer,
         private RandomConverterPicker $randomConverterPicker,
+        private iterable $outputStrategies,
     ) {
     }
 
@@ -27,15 +29,20 @@ readonly class Generator
             $value = $generator->generate();
             $converter = $this->randomConverterPicker->pick();
 
-            if (is_array($value)) {
-                foreach ($value as $item) {
-                    $converted = $converter->convert($item);
-                    $this->printer->print($item, $converted);
-                }
-            } else {
-                $converted = $converter->convert($value);
-                $this->printer->print($value, $converted);
+            $this->processValue($value, $converter);
+        }
+    }
+
+    private function processValue(mixed $value, $converter): void
+    {
+        /** @var OutputStrategyInterface $strategy */
+        foreach ($this->outputStrategies as $strategy) {
+            if ($strategy->supports($value)) {
+                $strategy->process($value, $converter, $this->printer);
+                return;
             }
         }
+
+        throw new \RuntimeException('No output strategy supports given value');
     }
 }

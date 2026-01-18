@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Converter;
 
-class StringPositionConverter
+class StringPositionConverter implements ConverterInterface
 {
     public function convert(string $input): string
     {

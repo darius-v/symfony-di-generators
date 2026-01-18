@@ -10,41 +10,20 @@ use App\Converter\ConverterInterface;
 use App\Collection\GeneratorCollection;
 use App\Factory\GeneratorsCollectionFactory;
 use App\Generator\GeneratorInterface;
-use App\Generator\Strategies\OutputStrategyInterface;
+use App\Generator\OutputProcessor;
 use App\Services\Printer;
+use App\Generator\Strategies\OutputStrategyInterface;
 use PHPUnit\Framework\TestCase;
 
 class GeneratorTest extends TestCase
 {
-    public function testItUsesSupportingStrategyToProcessValue(): void
+    public function testItUsesOutputProcessor(): void
     {
-        $generatedRandomString = 'test';
+        $generatedValue = 'test';
         $convertedValue = 'converted';
 
-        $converter = $this->converterStub($generatedRandomString, $convertedValue);
-
-        $printer = $this->createStub(Printer::class);
-
-        $strategy = $this->createMock(OutputStrategyInterface::class);
-        $strategy->method('supports')->with($generatedRandomString)->willReturn(true);
-        $strategy->expects($this->once())
-            ->method('process')
-            ->with($generatedRandomString, $converter, $printer);
-
-        $generator = new Generator(
-            $this->factoryStub($generatedRandomString),
-            $printer,
-            $this->converterPickerStub($converter),
-            [$strategy]
-        );
-
-        $generator->generate();
-    }
-
-    private function factoryStub(string $generatedRandomString): GeneratorsCollectionFactory
-    {
         $valueGenerator = $this->createStub(GeneratorInterface::class);
-        $valueGenerator->method('generate')->willReturn($generatedRandomString);
+        $valueGenerator->method('generate')->willReturn($generatedValue);
 
         $collection = new GeneratorCollection();
         $collection->add($valueGenerator);
@@ -52,22 +31,24 @@ class GeneratorTest extends TestCase
         $factory = $this->createStub(GeneratorsCollectionFactory::class);
         $factory->method('create')->willReturn($collection);
 
-        return $factory;
-    }
-
-    private function converterStub(string $generatedRandomString, $convertedValue): ConverterInterface
-    {
         $converter = $this->createStub(ConverterInterface::class);
-        $converter->method('convert')->with($generatedRandomString)->willReturn($convertedValue);
+        $converter->method('convert')->with($generatedValue)->willReturn($convertedValue);
 
-        return $converter;
-    }
-
-    private function converterPickerStub(ConverterInterface $converter): RandomConverterPicker
-    {
         $picker = $this->createStub(RandomConverterPicker::class);
         $picker->method('pick')->willReturn($converter);
 
-        return $picker;
+        $printer = $this->createStub(Printer::class);
+
+        $strategy = $this->createMock(OutputStrategyInterface::class);
+        $strategy->method('supports')->with($generatedValue)->willReturn(true);
+        $strategy->expects($this->once())
+            ->method('process')
+            ->with($generatedValue, $converter, $printer);
+
+        $processor = new OutputProcessor([$strategy], $printer);
+
+        $generator = new Generator($factory, $picker, $processor);
+
+        $generator->generate();
     }
 }

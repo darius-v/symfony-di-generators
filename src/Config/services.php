@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Command\Generator;
+use App\Converter\RandomConverterPicker;
 use App\Factory\GeneratorsCollectionFactory;
 use App\Services\Printer;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -15,5 +16,8 @@ return static function (ContainerBuilder $container): void {
         ->setPublic(true);
 
     $container->autowire(Generator::class)
+        ->setPublic(true);
+
+    $container->autowire(RandomConverterPicker::class)
         ->setPublic(true);
 };

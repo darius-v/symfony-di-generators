@@ -18,9 +18,6 @@ readonly class RandomStringArrayGenerator implements GeneratorInterface
         $this->generator = $generator;
     }
 
-    /**
-     * @throws RandomException
-     */
     public function generate(): array
     {
         return array_map(

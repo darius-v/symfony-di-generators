@@ -8,6 +8,7 @@ use App\Converter\Rot13Converter;
 use App\Converter\StringPositionConverter;
 use App\Factory\GeneratorsCollectionFactory;
 use App\Generator\OutputProcessor;
+use App\Generator\RandomCharGenerator;
 use App\Generator\Strategies\ArrayOutputStrategy;
 use App\Generator\Strategies\ScalarOutputStrategy;
 use App\Services\Printer;
@@ -22,6 +23,9 @@ return static function (ContainerBuilder $container): void {
         ->setPublic(true);
 
     $container->autowire(Generator::class)
+        ->setPublic(true);
+
+    $container->autowire(RandomCharGenerator::class)
         ->setPublic(true);
 
     $container->autowire(OutputProcessor::class)

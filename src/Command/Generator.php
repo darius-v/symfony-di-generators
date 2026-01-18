@@ -8,7 +8,7 @@ use App\Converter\Rot13Converter;
 use App\Converter\StringPositionConverter;
 use App\Factory\GeneratorsCollectionFactory;
 use App\Generator\GeneratorInterface;
-use App\Printer;
+use App\Services\Printer;
 
 readonly class Generator
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Converter;
+namespace App\Tests\Unit\Converter;
 
 use App\Converter\StringPositionConverter;
 use PHPUnit\Framework\Attributes\DataProvider;

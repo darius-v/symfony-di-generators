@@ -1,11 +1,12 @@
 Todo:
-- sniffer
-- stan
-- tests
+- integration test?
 - retest readme
 
 Done
-- Why rot13 converter needed if php has this function? 
+- Why rot13 converter needed if php has this function?
+- sniffer
+- stan
+- tests
 
 To launch:
 
@@ -24,6 +25,9 @@ Bash:
 Inside bash:
 
 `composer install`
+
+Run application:
+`php index.php`
 
 Sniffer
 

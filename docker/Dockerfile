@@ -1,6 +1,5 @@
 FROM php:8.5-cli
 
-# Install system packages required for development and zip support
 RUN apt-get update && apt-get install -y \
     git \
     unzip \

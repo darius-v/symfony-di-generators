@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Command;
+namespace App\Tests\Unit\Command;
 
-use App\Command\Generator;
-use App\Converter\RandomConverterPicker;
-use App\Converter\ConverterInterface;
 use App\Collection\GeneratorCollection;
+use App\Command\Generator;
+use App\Converter\ConverterInterface;
+use App\Converter\RandomConverterPicker;
 use App\Factory\GeneratorsCollectionFactory;
 use App\Generator\GeneratorInterface;
 use App\Generator\OutputProcessor;

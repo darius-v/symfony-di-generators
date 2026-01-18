@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Generator;
+namespace App\Tests\Unit\Generator;
 
 use App\Converter\ConverterInterface;
 use App\Generator\OutputProcessor;
 use App\Generator\Strategies\OutputStrategyInterface;
 use App\Services\Printer;
-
 use PHPUnit\Framework\TestCase;
 
 class OutputProcessorTest extends TestCase

@@ -7,6 +7,7 @@ use App\Converter\RandomConverterPicker;
 use App\Converter\Rot13Converter;
 use App\Converter\StringPositionConverter;
 use App\Factory\GeneratorsCollectionFactory;
+use App\Generator\OutputProcessor;
 use App\Generator\Strategies\ArrayOutputStrategy;
 use App\Generator\Strategies\ScalarOutputStrategy;
 use App\Services\Printer;
@@ -22,6 +23,12 @@ return static function (ContainerBuilder $container): void {
 
     $container->autowire(Generator::class)
         ->setPublic(true);
+
+    $container->autowire(OutputProcessor::class)
+        ->setPublic(true)
+        ->setArguments([
+            '$strategies' => new TaggedIteratorArgument('app.output_strategy'),
+        ]);
 
     $container->autowire(StringPositionConverter::class)
         ->addTag('app.converter');
@@ -42,8 +49,6 @@ return static function (ContainerBuilder $container): void {
         ->addTag('app.output_strategy');
 
     $container->autowire(Generator::class)
-        ->setPublic(true)
-        ->setArguments([
-            '$outputStrategies' => new TaggedIteratorArgument('app.output_strategy'),
-        ]);
+        ->setPublic(true);
+
 };

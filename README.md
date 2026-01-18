@@ -36,3 +36,7 @@ Autofix sniffer
 PHPStan
 
 `vendor/bin/phpstan analyse src`
+
+Tests
+
+`vendor/bin/phpunit --colors tests`

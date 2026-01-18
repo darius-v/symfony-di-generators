@@ -43,6 +43,6 @@ readonly class Generator
             }
         }
 
-        throw new \RuntimeException('No output strategy supports given value');
+        throw new \LogicException('No output strategy supports given value');
     }
 }

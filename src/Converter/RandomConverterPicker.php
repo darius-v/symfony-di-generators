@@ -10,7 +10,7 @@ readonly class RandomConverterPicker
     {
     }
 
-    public function pick(): StringPositionConverter|Rot13Converter
+    public function pick(): ConverterInterface
     {
         $convertersArray = iterator_to_array($this->converters);
         return $convertersArray[array_rand($convertersArray)];

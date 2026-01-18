@@ -6,4 +6,5 @@ namespace App\Converter;
 
 interface ConverterInterface
 {
+    public function convert(string $input): string;
 }

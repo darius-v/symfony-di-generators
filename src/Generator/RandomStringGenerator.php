@@ -8,12 +8,9 @@ use Random\RandomException;
 
 readonly class RandomStringGenerator implements GeneratorInterface
 {
-    private int $defaultLength;
-
     public function __construct(
-        int $defaultLength//todo rename
+        private ?int $length = null
     ) {
-        $this->defaultLength = $defaultLength;
     }
 
     /**
@@ -21,10 +18,10 @@ readonly class RandomStringGenerator implements GeneratorInterface
      */
     public function generate(?int $length = null): string
     {
-        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; // todo const
         $result = '';
 
-        $length = $length ?? $this->defaultLength;
+        $length = $length ?? $this->length;
 
         for ($i = 0; $i < $length; $i++) {
             $result .= $chars[random_int(0, strlen($chars) - 1)];

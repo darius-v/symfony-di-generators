@@ -15,7 +15,7 @@ class GeneratorsCollectionFactory
         $collection = new GeneratorCollection();
 
         $collection->add(new RandomStringGenerator(4));
-        $collection->add(new RandomStringArrayGenerator(2, 3, new RandomStringGenerator(2)));
+        $collection->add(new RandomStringArrayGenerator(2, 20, new RandomStringGenerator(null)));
 
         return $collection;
     }

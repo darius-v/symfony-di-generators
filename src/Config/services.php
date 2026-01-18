@@ -50,5 +50,4 @@ return static function (ContainerBuilder $container): void {
 
     $container->autowire(Generator::class)
         ->setPublic(true);
-
 };

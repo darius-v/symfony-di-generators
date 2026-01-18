@@ -6,5 +6,4 @@ namespace App\Converter;
 
 interface ConverterInterface
 {
-
 }

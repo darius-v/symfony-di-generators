@@ -6,7 +6,7 @@ namespace App\Services;
 
 class Printer
 {
-    function print(string $original, string $converted): void
+    public function print(string $original, string $converted): void
     {
         echo "Original: $original" . PHP_EOL;
         echo "Converted: $converted" . PHP_EOL;

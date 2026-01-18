@@ -28,16 +28,13 @@ readonly class Generator
             $converter = $this->randomConverterPicker->pick();
 
             if (is_array($value)) {
-
-                $converted = [];
-
                 foreach ($value as $item) {
-                    $converted[] = $converter->convert($item);
+                    $converted = $converter->convert($item);
                     $this->printer->print($item, $converted);
                 }
             } else {
                 $converted = $converter->convert($value);
-                $this->printer->print($value, [$converted]);
+                $this->printer->print($value, $converted);
             }
         }
     }

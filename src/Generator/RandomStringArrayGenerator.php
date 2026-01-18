@@ -8,15 +8,13 @@ use Random\RandomException;
 
 readonly class RandomStringArrayGenerator implements GeneratorInterface
 {
-    private int $defaultLength;
     private RandomStringGenerator $generator;
 
     public function __construct(
         private int $arraySize,
-        int $defaultLength,
+        private int $lengthOfGeneratedStrings,
         RandomStringGenerator $generator
     ) {
-        $this->defaultLength = $defaultLength;
         $this->generator = $generator;
     }
 
@@ -26,7 +24,7 @@ readonly class RandomStringArrayGenerator implements GeneratorInterface
     public function generate(): array
     {
         return array_map(
-            fn () => $this->generator->generate($this->defaultLength),
+            fn () => $this->generator->generate($this->lengthOfGeneratedStrings),
             range(1, $this->arraySize)
         );
     }

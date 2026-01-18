@@ -10,11 +10,16 @@ class StringPositionConverter implements ConverterInterface
     {
         $parts = [];
 
-        foreach (str_split($input) as $char) {
-            if (ctype_digit($char)) {
-                $parts[] = $char;
-            } elseif (ctype_alpha($char)) {
-                $parts[] = ord(strtolower($char)) - 96;
+        // Match sequences of digits OR single letters
+        preg_match_all('/\d+|[a-zA-Z]/', $input, $matches);
+
+        foreach ($matches[0] as $match) {
+            if (ctype_digit($match)) {
+                // preserve full number
+                $parts[] = $match;
+            } elseif (ctype_alpha($match)) {
+                // convert letter to position
+                $parts[] = ord(strtolower($match)) - 96;
             }
         }
 
